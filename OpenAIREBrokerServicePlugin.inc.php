@@ -14,33 +14,29 @@
  */
 import('lib.pkp.classes.plugins.GenericPlugin');
 
-/*
-
-  enrich_more_openaccess_version
-  enrich_more_pid
-  enrich_missing_author_orcid
-  enrich_missing_pid
-  enrich_missing_abstract
-  enrich_missing_subject_ddc
-  enrich_more_subject_ddc
-  enrich_missing_subject_jel
-  enrich_more_subject_jel
-  enrich_missing_publication_date
-  enrich_missing_openaccess_version
-  enrich_missing_subject_acm
-  enrich_more_subject_acm
-  enrich_missing_project
-  enrich_missing_subject_mesheuropmc
-  enrich_more_subject_mesheuropmc
-  enrich_missing_subject_arxiv
-  enrich_more_subject_arxiv
-
-
-
- */
-
 class OpenAIREBrokerServicePlugin extends GenericPlugin {
 
+    const CONFIG_VARS = array(
+        'enrich_more_openaccess_version' => 'string',
+        'enrich_more_pid' => 'string',
+        'enrich_missing_author_orcid' => 'string',
+        'enrich_missing_pid' => 'string',
+        'enrich_missing_abstract' => 'string',
+        'enrich_missing_subject_ddc' => 'string',
+        'enrich_more_subject_ddc' => 'string',
+        'enrich_missing_subject_jel' => 'string',
+        'enrich_more_subject_jel' => 'string',
+        'enrich_missing_publication_date' => 'string',
+        'enrich_missing_openaccess_version' => 'string',
+        'enrich_missing_subject_acm' => 'string',
+        'enrich_more_subject_acm' => 'string',
+        'enrich_missing_project' => 'string',
+        'enrich_missing_subject_mesheuropmc' => 'string',
+        'enrich_more_subject_mesheuropmc' => 'string',
+        'enrich_missing_subject_arxiv' => 'string',
+        'enrich_more_subject_arxiv' => 'string'
+    );
+    
     /**
      * @copydoc Plugin::register()
      */
@@ -84,116 +80,16 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
     /**
      * Extend the context entity's schema with an aditionals properties
      */
-    public function addToSchema(string $hookName, array $args) {
+    public function addToSchema($hookName, $args) {
         $schema = $args[0];/** @var stdClass */
-        $schema->properties->enrich_more_openaccess_version = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_more_pid = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_author_orcid = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_pid = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_abstract = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_subject_ddc = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_more_subject_ddc = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_subject_jel = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_more_subject_jel = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_publication_date = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_openaccess_version = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_subject_acm = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_more_subject_acm = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_project = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_subject_mesheuropmc = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_more_subject_mesheuropmc = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_missing_subject_arxiv = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
-        $schema->properties->enrich_more_subject_arxiv = (object) [
-                    'type' => 'string',
-                    'apiSummary' => true,
-                    'multilingual' => false,
-                    'validation' => ['nullable']
-        ];
+        foreach (self::CONFIG_VARS as $configVar => $type) {
+            $schema->properties->$configVar = (object) [
+                        'type' => $type,
+                        'apiSummary' => true,
+                        'multilingual' => false,
+                        'validation' => ['nullable']
+            ];
+        }
         return false;
     }
 
@@ -316,54 +212,5 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         return parent::manage($args, $request);
     }
 
-    /**
-     * Insert Journal enrichments to Publication part of workflow
-     */
-    function contextEnrichments($hookName, $params) {
-//		$smarty =& $params[1];
-//		$output =& $params[2];
-//		$templateMgr =& TemplateManager::getManager();
-//                $request = Application::get()->getRequest();
-//                
-//		$currentJournal = $smarty->getTemplateVars('currentJournal');
-//		
-//		$article = $smarty->getTemplateVars('article');
-//		if (!empty($currentJournal)) {
-//			
-//			if ($request->getRequestedPage() == 'article' && $article) {
-//				
-//				$journal =& $request->getJournal();
-//				$journalId = $journal->getId();
-//				
-//				$doi = $article->getStoredPubId('doi');
-//                                if(trim($doi) == "") return false;
-//				$user = $this->getSetting($journalId, 'cb_user');
-//				$pass = $this->getSetting($journalId, 'cb_pass');
-//				
-//				$citedByList = $this->GetXML($doi, $user, $pass);
-//                                if (sizeof($citedByList)==0) {
-//                                    $citedByCount = 0;
-//                                    $citedByListOutput = "";
-//                                } else{
-//                                    $citedByCount = $this->GetCount($citedByList);
-//                                    $citedByListOutput = $this->CreateList($citedByList);
-//                                }
-//                                $smarty->assign('citedByCount', $citedByCount);
-//                                $smarty->assign('citedByList', $citedByListOutput);                                
-//                                $output .= $smarty->fetch($this->getTemplateResource('articleCitedBy.tpl'));
-//			}
-//		}
-        return false;
-    }
-
-    /*
-     * Generates and shows output
-     * @param $array array
-     * @return string
-     */
-
-    function CreateList($array) {
-        
-    }
 
 }

@@ -50,5 +50,5 @@
         <message key='plugins.generic.openAIREBrokerService.topic'>Topic</message>
         <message key='plugins.generic.openAIREBrokerService.message'>Message</message>
         
-        <message key="plugins.generic.openAIREBrokerService.article.description">Depending on the size of your journal (the number of published articles) and the registered subscriptions, loading may take several minutes.</message>
+        <message key="plugins.generic.openAIREBrokerService.article.description">Depending on the size of your journal (the number of published articles) and the number of registered subscriptions, loading may take several minutes.</message>
 </locale>
