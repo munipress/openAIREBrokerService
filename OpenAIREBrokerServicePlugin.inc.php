@@ -36,7 +36,7 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         'enrich_missing_subject_arxiv' => 'string',
         'enrich_more_subject_arxiv' => 'string'
     );
-    
+
     /**
      * @copydoc Plugin::register()
      */
@@ -47,7 +47,7 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
             HookRegistry::register('Schema::get::context', [$this, 'addToSchema']);
             HookRegistry::register('Template::Settings::website', array($this, 'callbackShowWebsiteSettingsTabs'));
             HookRegistry::register('Template::Workflow::Publication', array($this, 'addToPublicationForms'));
-            
+
             HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
             HookRegistry::register('LoadComponentHandler', array($this, 'setupContextGridHandler'));
         }
@@ -80,7 +80,7 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
     /**
      * Extend the context entity's schema with an aditionals properties
      */
-    public function addToSchema($hookName, $args) {
+    public function addToSchema(string $hookName, array $args) {
         $schema = $args[0];/** @var stdClass */
         foreach (self::CONFIG_VARS as $configVar => $type) {
             $schema->properties->$configVar = (object) [
@@ -104,7 +104,6 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         $output = & $args[2];
 
         $output .= $templateMgr->fetch($this->getTemplateResource('contextEnrichments.tpl'));
-
         // Permit other plugins to continue interacting with this hook
         return false;
     }
@@ -124,7 +123,7 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         }
         return false;
     }
-    
+
     /**
      * Permit requests to the OpenAIRE Broker Service grid handler
      * @param $hookName string The name of the hook being invoked
@@ -159,7 +158,6 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         );
         return false;
     }
-
 
     /**
      * @copydoc Plugin::getActions()
@@ -211,6 +209,4 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         }
         return parent::manage($args, $request);
     }
-
-
 }

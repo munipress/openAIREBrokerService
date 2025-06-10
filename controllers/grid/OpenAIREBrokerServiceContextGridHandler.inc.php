@@ -179,12 +179,12 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                 $issueId = $submission->getCurrentPublication()->getData('issueId');
                 $issueDao = DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
                 $issue = $issueDao->getById($issueId, $context->getId());
-                if ($issue) {
+                if($issue){
                     $issueIdentification = htmlspecialchars($issue->getIssueIdentification());
-                } else {
+                } else{
                     $issueIdentification = "";
                 }
-
+                
                 $gridData[] = array(
                     'id' => $submissionId,
                     'title' => htmlspecialchars($title),
@@ -194,22 +194,10 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                     'enrichmentsMessage' => $articleEnrichment['enrichmentsMessage']
                 );
             }
-        }  
+        }
         arsort($gridData);
         return $gridData;
     }
-
-    //
-    // Implemented methods from GridHandler.
-    //
-
-    /**
-     * @copydoc GridHandler::initFeatures()
-     */
-//    function initFeatures($request, $args) {
-//        import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
-//        return array(new PagingFeature());
-//    }
 }
 
 ?>

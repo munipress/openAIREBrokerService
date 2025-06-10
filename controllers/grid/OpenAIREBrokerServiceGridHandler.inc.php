@@ -98,7 +98,7 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
         // Get the items and add the data to the grid
         $openAIREBrokerServiceEnrichments = new OpenAIREBrokerServiceEnrichments();
         $articleEnrichments = $openAIREBrokerServiceEnrichments->articleEnrichments($submissionId);
-        
+
         $gridData = array();
         foreach ($articleEnrichments as $submissionId => $articleEnrichmentById) {
             foreach($articleEnrichmentById as $articleEnrichment){
@@ -109,6 +109,7 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
                 );
             }
         }
+
         $this->setGridDataElements($gridData);
 
         $this->setReadOnly(true);

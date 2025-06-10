@@ -10,7 +10,6 @@
  *
  * @brief Form for journal managers to modify OpenAIRE Broker Service plugin settings
  */
-
 // $Id$
 
 
@@ -18,16 +17,16 @@ import('lib.pkp.classes.form.Form');
 
 class OpenAIREBrokerServiceSettingsForm extends Form {
 
-	/** @var int */
-	var $_contextId;
+    /** @var int */
+    var $_contextId;
 
-	/** @var object */
-	var $_plugin;
-        
-        /** @var context **/
-        var $_context;
-        
-	const CONFIG_VARS = array(
+    /** @var object */
+    var $_plugin;
+
+    /** @var context * */
+    var $_context;
+
+    const CONFIG_VARS = array(
         'enrich_more_openaccess_version' => 'string',
         'enrich_more_pid' => 'string',
         'enrich_missing_author_orcid' => 'string',
@@ -102,6 +101,7 @@ class OpenAIREBrokerServiceSettingsForm extends Form {
         $contextDao = DAORegistry::getDAO('JournalDAO'); /* @var $contextDao JournalDAO */
         $contextDao->updateObject($context);
     }
+
 }
 
 ?>

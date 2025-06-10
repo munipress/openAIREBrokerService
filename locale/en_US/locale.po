@@ -1,0 +1,114 @@
+#
+msgid ""
+msgstr "Language: en_US\n"
+
+msgid "plugins.generic.openAIREBrokerService"
+msgstr "OpenAIRE Enrichments"
+
+msgid "plugins.generic.openAIREBrokerService.displayName"
+msgstr "OpenAIRE Enrichments"
+
+msgid "plugins.generic.openAIREBrokerService.description"
+msgstr "Integration with OpenAIRE Enrichments via the OpenAIRE Broker Service API."
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.subscriptions"
+msgstr "Subscriptions list"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.subscriptions.description"
+msgstr "Below, you can configure subscriptions to enrichments you are subscribed to via your account in OpenAIRE Provide."
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_openaccess_version"
+msgstr "ENRICH/MORE/OPENACCESS_VERSION"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_pid"
+msgstr "ENRICH/MORE/PID"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_author_orcid"
+msgstr "ENRICH/MISSING/AUTHOR/ORCID"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_pid"
+msgstr "ENRICH/MISSING/PID"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_abstract"
+msgstr "ENRICH/MISSING/ABSTRACT"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_ddc"
+msgstr "ENRICH/MISSING/SUBJECT/DDC"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_ddc"
+msgstr "ENRICH/MORE/SUBJECT/DDC"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_jel"
+msgstr "ENRICH/MISSING/SUBJECT/JEL"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_jel"
+msgstr "ENRICH/MORE/SUBJECT/JEL"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_publication_date"
+msgstr "ENRICH/MISSING/PUBLICATION_DATE"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_openaccess_version"
+msgstr "ENRICH/MISSING/OPENACCESS_VERSION"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_acm"
+msgstr "ENRICH/MISSING/SUBJECT/ACM"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_acm"
+msgstr "ENRICH/MORE/SUBJECT/ACM"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_project"
+msgstr "ENRICH/MISSING/PROJECT"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_mesheuropmc"
+msgstr "ENRICH/MISSING/SUBJECT/MESHEUROPMC"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_mesheuropmc"
+msgstr "ENRICH/MORE/SUBJECT/MESHEUROPMC"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_arxiv"
+msgstr "ENRICH/MISSING/SUBJECT/ARXIV"
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_arxiv"
+msgstr "ENRICH/MORE/SUBJECT/ARXIV"        
+        
+msgid "plugins.generic.openAIREBrokerService.manager.settings.type"
+msgstr "type: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.value"
+msgstr "value: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.publicationDate"
+msgstr "publication date: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.hostedBy"
+msgstr "hosted by: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.license"
+msgstr "license: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.url"
+msgstr "url: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.fullname"
+msgstr "author's name: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.orcid"
+msgstr "ORCID: "
+
+msgid "plugins.generic.openAIREBrokerService.manager.settings.abstract"
+msgstr "abstract: "
+
+msgid "plugins.generic.openAIREBrokerService.trust"
+msgstr "Trust"
+
+msgid "plugins.generic.openAIREBrokerService.topic"
+msgstr "Topic"
+
+msgid "plugins.generic.openAIREBrokerService.message"
+msgstr "Message"
+        
+msgid "plugins.generic.openAIREBrokerService.article.description"
+msgstr "Depending on the size of your journal (the number of published articles) and the number of registered subscriptions, loading may take several minutes. Be sure you have setted up execution time high enough. If you have troubles contact your system administrator."
+
+msgid "plugins.generic.openAIREBrokerService.noData"
+msgstr "No enrichments founded."
