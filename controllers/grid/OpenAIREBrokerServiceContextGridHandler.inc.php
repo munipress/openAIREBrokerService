@@ -47,14 +47,6 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
     }
 
     /**
-     * Get the submission associated with this grid.
-     * @return Submission
-     */
-    function getSubmission() {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-    }
-
-    /**
      * Get whether or not this grid should be 'read only'
      * @return boolean
      */
@@ -78,8 +70,8 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
      * @copydoc PKPHandler::authorize()
      */
     function authorize($request, &$args, $roleAssignments) {
-        import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
-        $this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
+        import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+        $this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }
 
@@ -89,13 +81,6 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
     function initialize($request, $args = null) {
         parent::initialize($request, $args);
         $context = $request->getContext();
-
-        // Load submission-specific translations.
-        AppLocale::requireComponents(
-                LOCALE_COMPONENT_APP_SUBMISSION, // title filter
-                LOCALE_COMPONENT_PKP_SUBMISSION, // authors filter
-                LOCALE_COMPONENT_APP_MANAGER
-        );
 
         // Set the grid details.
         $this->setTitle('plugins.generic.openAIREBrokerService');
@@ -178,6 +163,8 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
             foreach ($articleEnrichmentsById as $articleEnrichment) {
                 $submissionDao = DAORegistry::getDAO('SubmissionDAO');
                 $submission = $submissionDao->getById($submissionId);
+                if(!$submission) continue;
+                $title = $submission->getLocalizedTitle();
                 if (empty($title))
                     $title = __('common.untitled');
 
@@ -192,12 +179,12 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                 $issueId = $submission->getCurrentPublication()->getData('issueId');
                 $issueDao = DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
                 $issue = $issueDao->getById($issueId, $context->getId());
-                if($issue){
+                if ($issue) {
                     $issueIdentification = htmlspecialchars($issue->getIssueIdentification());
-                } else{
+                } else {
                     $issueIdentification = "";
                 }
-                
+
                 $gridData[] = array(
                     'id' => $submissionId,
                     'title' => htmlspecialchars($title),
@@ -207,7 +194,8 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                     'enrichmentsMessage' => $articleEnrichment['enrichmentsMessage']
                 );
             }
-        }
+        }  
+        arsort($gridData);
         return $gridData;
     }
 
@@ -222,7 +210,6 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
 //        import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
 //        return array(new PagingFeature());
 //    }
-
 }
 
 ?>

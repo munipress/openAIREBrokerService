@@ -109,7 +109,6 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
                 );
             }
         }
-
         $this->setGridDataElements($gridData);
 
         $this->setReadOnly(true);

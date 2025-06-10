@@ -2,53 +2,55 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/generic/openAIREBrokerService/locale/en_US/locale.xml
-  *
-  * Copyright (c) 2014-2020 Simon Fraser University
-  * Copyright (c) 2003-2020 John Willinsky
-  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
-  * Localization information: https://pkp.sfu.ca/wiki/index.php?title=Translating_OxS
-  * Localization strings.
-  -->
+* plugins/generic/openAIREBrokerService/locale/en_US/locale.xml
+*
+* Copyright (c) 2014-2020 Simon Fraser University
+* Copyright (c) 2003-2020 John Willinsky
+* Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+* Localization information: https://pkp.sfu.ca/wiki/index.php?title=Translating_OxS
+* Localization strings.
+-->
 
 <locale name="en_US" full_name="U.S. English">
-        <message key='plugins.generic.openAIREBrokerService'>OpenAIRE Enrichments</message>
-	<message key='plugins.generic.openAIREBrokerService.displayName'>OpenAIRE Enrichments</message>
-        <message key='plugins.generic.openAIREBrokerService.description'>Integration with OpenAIRE Enrichments via the OpenAIRE Broker Service API.</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.subscriptions'>Subscriptions list</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.subscriptions.description'>Below, you can configure subscriptions to enrichments you are subscribed to via your account in OpenAIRE Provide.</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_openaccess_version'>ENRICH/MORE/OPENACCESS_VERSION</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_pid'>ENRICH/MORE/PID</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_author_orcid'>ENRICH/MISSING/AUTHOR/ORCID</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_pid'>ENRICH/MISSING/PID</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_abstract'>ENRICH/MISSING/ABSTRACT</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_ddc'>ENRICH/MISSING/SUBJECT/DDC</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_ddc'>ENRICH/MORE/SUBJECT/DDC</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_jel'>ENRICH/MISSING/SUBJECT/JEL</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_jel'>ENRICH/MORE/SUBJECT/JEL</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_publication_date'>ENRICH/MISSING/PUBLICATION_DATE</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_openaccess_version'>ENRICH/MISSING/OPENACCESS_VERSION</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_acm'>ENRICH/MISSING/SUBJECT/ACM</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_acm'>ENRICH/MORE/SUBJECT/ACM</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_project'>ENRICH/MISSING/PROJECT</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_mesheuropmc'>ENRICH/MISSING/SUBJECT/MESHEUROPMC</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_mesheuropmc'>ENRICH/MORE/SUBJECT/MESHEUROPMC</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_arxiv'>ENRICH/MISSING/SUBJECT/ARXIV</message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_arxiv'>ENRICH/MORE/SUBJECT/ARXIV</message>
+    <message key='plugins.generic.openAIREBrokerService'>OpenAIRE Enrichments</message>
+    <message key='plugins.generic.openAIREBrokerService.displayName'>OpenAIRE Enrichments</message>
+    <message key='plugins.generic.openAIREBrokerService.description'>Integration with OpenAIRE Enrichments via the OpenAIRE Broker Service API.</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.subscriptions'>Subscriptions list</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.subscriptions.description'>Below, you can configure subscriptions to enrichments you are subscribed to via your account in OpenAIRE Provide.</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_openaccess_version'>ENRICH/MORE/OPENACCESS_VERSION</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_pid'>ENRICH/MORE/PID</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_author_orcid'>ENRICH/MISSING/AUTHOR/ORCID</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_pid'>ENRICH/MISSING/PID</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_abstract'>ENRICH/MISSING/ABSTRACT</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_ddc'>ENRICH/MISSING/SUBJECT/DDC</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_ddc'>ENRICH/MORE/SUBJECT/DDC</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_jel'>ENRICH/MISSING/SUBJECT/JEL</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_jel'>ENRICH/MORE/SUBJECT/JEL</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_publication_date'>ENRICH/MISSING/PUBLICATION_DATE</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_openaccess_version'>ENRICH/MISSING/OPENACCESS_VERSION</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_acm'>ENRICH/MISSING/SUBJECT/ACM</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_acm'>ENRICH/MORE/SUBJECT/ACM</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_project'>ENRICH/MISSING/PROJECT</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_mesheuropmc'>ENRICH/MISSING/SUBJECT/MESHEUROPMC</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_mesheuropmc'>ENRICH/MORE/SUBJECT/MESHEUROPMC</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_missing_subject_arxiv'>ENRICH/MISSING/SUBJECT/ARXIV</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.enrich_more_subject_arxiv'>ENRICH/MORE/SUBJECT/ARXIV</message>
         
         
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.type'>type: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.value'>value: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.publicationDate'>publication date: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.hostedBy'>hosted by: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.license'>license: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.url'>url: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.fullname'>author's name: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.orcid'>ORCID: </message>
-        <message key='plugins.generic.openAIREBrokerService.manager.settings.abstract'>abstract: </message>
-        <message key='plugins.generic.openAIREBrokerService.trust'>Trust</message>
-        <message key='plugins.generic.openAIREBrokerService.topic'>Topic</message>
-        <message key='plugins.generic.openAIREBrokerService.message'>Message</message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.type'>type: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.value'>value: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.publicationDate'>publication date: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.hostedBy'>hosted by: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.license'>license: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.url'>url: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.fullname'>author's name: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.orcid'>ORCID: </message>
+    <message key='plugins.generic.openAIREBrokerService.manager.settings.abstract'>abstract: </message>
+    <message key='plugins.generic.openAIREBrokerService.trust'>Trust</message>
+    <message key='plugins.generic.openAIREBrokerService.topic'>Topic</message>
+    <message key='plugins.generic.openAIREBrokerService.message'>Message</message>
         
-        <message key="plugins.generic.openAIREBrokerService.article.description">Depending on the size of your journal (the number of published articles) and the number of registered subscriptions, loading may take several minutes.</message>
+    <message key="plugins.generic.openAIREBrokerService.article.description">Depending on the size of your journal (the number of published articles) and the number of registered subscriptions, loading may take several minutes. Be sure you have setted up execution time high enough. If you have troubles contact your system administrator.</message>
+
+    <message key="plugins.generic.openAIREBrokerService.noData">No enrichments founded.</message>
 </locale>
