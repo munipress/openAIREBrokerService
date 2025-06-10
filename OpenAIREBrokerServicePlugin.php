@@ -12,7 +12,20 @@
  *
  * @brief OpenAIRE Broker Service plugin class
  */
-import('lib.pkp.classes.plugins.GenericPlugin');
+namespace APP\plugins\generic\openAIREBrokerService;
+
+use PKP\core\JSONMessage;
+use APP\template\TemplateManager;
+use PKP\linkAction\LinkAction;
+use PKP\linkAction\request\AjaxModal;
+use PKP\plugins\GenericPlugin;
+use PKP\plugins\Hook;
+
+use APP\plugins\generic\openAIREBrokerService\OpenAIREBrokerServiceSettingsForm;
+use APP\plugins\generic\openAIREBrokerService\controllers\grid\OpenAIREBrokerServiceGridHandler;
+use APP\plugins\generic\openAIREBrokerService\controllers\grid\OpenAIREBrokerServiceContextGridHandler;
+
+
 
 class OpenAIREBrokerServicePlugin extends GenericPlugin {
 
@@ -44,12 +57,12 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         $success = parent::register($category, $path, $mainContextId);
         if ($success && $this->getEnabled($mainContextId)) {
 
-            HookRegistry::register('Schema::get::context', [$this, 'addToSchema']);
-            HookRegistry::register('Template::Settings::website', array($this, 'callbackShowWebsiteSettingsTabs'));
-            HookRegistry::register('Template::Workflow::Publication', array($this, 'addToPublicationForms'));
+            Hook::add('Schema::get::context', [$this, 'addToSchema']);
+            Hook::add('Template::Settings::website', array($this, 'callbackShowWebsiteSettingsTabs'));
+            Hook::add('Template::Workflow::Publication', array($this, 'addToPublicationForms'));
 
-            HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
-            HookRegistry::register('LoadComponentHandler', array($this, 'setupContextGridHandler'));
+            Hook::add('LoadComponentHandler', array($this, 'setupGridHandler'));
+            Hook::add('LoadComponentHandler', array($this, 'setupContextGridHandler'));
         }
         return $success;
     }
@@ -104,6 +117,7 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
         $output = & $args[2];
 
         $output .= $templateMgr->fetch($this->getTemplateResource('contextEnrichments.tpl'));
+
         // Permit other plugins to continue interacting with this hook
         return false;
     }
@@ -115,10 +129,9 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
      */
     function setupContextGridHandler($hookName, $params) {
         $component = & $params[0];
-        if ($component == 'plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceContextGridHandler') {
-
-            import($component);
-            OpenAIREBrokerServiceContextGridHandler::setPlugin($this);
+        $handler = & $params[2];
+        if ($component == 'plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceContextGridHandler') {            
+            $handler = new OpenAIREBrokerServiceContextGridHandler($this);
             return true;
         }
         return false;
@@ -131,10 +144,10 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
      */
     function setupGridHandler($hookName, $params) {
         $component = & $params[0];
+        $handler = & $params[2];
         if ($component == 'plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceGridHandler') {
 
-            import($component);
-            OpenAIREBrokerServiceGridHandler::setPlugin($this);
+            $handler = new OpenAIREBrokerServiceGridHandler($this);
             return true;
         }
         return false;
@@ -146,10 +159,6 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
     function addToPublicationForms($hookName, $params) {
         $smarty = & $params[1];
         $output = & $params[2];
-        $submission = $smarty->get_template_vars('submission');
-        $smarty->assign([
-            'submissionId' => $submission->getId(),
-        ]);
 
         $output .= sprintf(
                 '<tab id="openAireEnrichmentsInWorkflow" label="%s">%s</tab>',
@@ -189,11 +198,9 @@ class OpenAIREBrokerServicePlugin extends GenericPlugin {
             case 'settings':
                 $context = $request->getContext();
 
-                AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_MANAGER);
                 $templateMgr = TemplateManager::getManager($request);
                 $templateMgr->registerPlugin('function', 'plugin_url', array($this, 'smartyPluginUrl'));
 
-                $this->import('OpenAIREBrokerServiceSettingsForm');
                 $form = new OpenAIREBrokerServiceSettingsForm($this, $context);
 
                 if ($request->getUserVar('save')) {

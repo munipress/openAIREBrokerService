@@ -12,11 +12,18 @@
  *
  * @brief Handle OpenAIREBrokerService Contextg grid requests.
  */
-import('lib.pkp.classes.controllers.grid.GridHandler');
-import('plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceContextGridCellProvider');
-import('plugins.generic.openAIREBrokerService.classes.OpenAIREBrokerServiceEnrichments');
 
-class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
+namespace APP\plugins\generic\openAIREBrokerService\controllers\grid;
+
+use PKP\db\DAORegistry;
+use APP\facades\Repo;
+use PKP\security\Role;
+use PKP\controllers\grid\GridColumn;
+use PKP\security\authorization\ContextAccessPolicy;
+use APP\plugins\generic\openAIREBrokerService\controllers\grid\OpenAIREBrokerServiceContextGridCellProvider;
+use APP\plugins\generic\openAIREBrokerService\classes\OpenAIREBrokerServiceEnrichments;
+
+class OpenAIREBrokerServiceContextGridHandler extends \PKP\controllers\grid\GridHandler {
 
     static $plugin;
 
@@ -29,7 +36,7 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
     function __construct() {
         parent::__construct();
         $this->addRoleAssignment(
-                array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
+                array(Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR),
                 array('fetchGrid', 'fetchRow')
         );
     }
@@ -70,7 +77,6 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
      * @copydoc PKPHandler::authorize()
      */
     function authorize($request, &$args, $roleAssignments) {
-        import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
         $this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }
@@ -91,11 +97,8 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
         $contextEnrichments = $openAIREBrokerServiceEnrichments->contextEnrichments();
 
         $gridData = $this->setGridDataEnrichments($contextEnrichments, $context);
-
         $this->setGridDataElements($gridData);
-
         $this->setReadOnly(true);
-
         // Columns
         $cellProvider = new OpenAIREBrokerServiceContextGridCellProvider();
         $this->addColumn(
@@ -106,7 +109,7 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                         'controllers/grid/gridCell.tpl',
                         $cellProvider,
                         array('alignment' => COLUMN_ALIGNMENT_LEFT,
-                    'width' => 5)
+                    'width' => 4)
                 )
         );
         $this->addColumn(
@@ -128,7 +131,7 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                         null,
                         $cellProvider,
                         array('alignment' => COLUMN_ALIGNMENT_LEFT,
-                    'width' => 20)
+                    'width' => 5)
                 )
         );
         $this->addColumn(new GridColumn(
@@ -138,15 +141,15 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                         'controllers/grid/gridCell.tpl',
                         $cellProvider,
                         array('alignment' => COLUMN_ALIGNMENT_LEFT,
-                    'width' => 10)
+                    'width' => 8)
         ));
-        $this->addColumn(new GridColumn(
-                        'enrichmentsTrust',
-                        'plugins.generic.openAIREBrokerService.trust',
-                        null,
-                        'controllers/grid/gridCell.tpl',
-                        $cellProvider
-        ));
+//        $this->addColumn(new GridColumn(
+//                        'enrichmentsTrust',
+//                        'plugins.generic.openAIREBrokerService.trust',
+//                        null,
+//                        'controllers/grid/gridCell.tpl',
+//                        $cellProvider
+//        ));
         $this->addColumn(new GridColumn(
                         'enrichmentsMessage',
                         'plugins.generic.openAIREBrokerService.message',
@@ -161,15 +164,16 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
         $gridData = array();
         foreach ($contextEnrichments as $submissionId => $articleEnrichmentsById) {
             foreach ($articleEnrichmentsById as $articleEnrichment) {
-                $submissionDao = DAORegistry::getDAO('SubmissionDAO');
-                $submission = $submissionDao->getById($submissionId);
+                $submission = Repo::submission()->get($submissionId);
                 if(!$submission) continue;
+                
                 $title = $submission->getLocalizedTitle();
                 if (empty($title))
                     $title = __('common.untitled');
 
                 if ($submission && !empty($submission->getCurrentPublication())) {
-                    $authorsInTitle = $submission->getShortAuthorString();
+                    $publication = $submission->getCurrentPublication();
+                    $authorsInTitle = $publication->getShortAuthorString();
                     $title = $submission->getCurrentPublication()->getLocalizedData('title');
                     $title = $authorsInTitle . '; ' . $title;
                 } else {
@@ -177,14 +181,14 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                 }
 
                 $issueId = $submission->getCurrentPublication()->getData('issueId');
-                $issueDao = DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
-                $issue = $issueDao->getById($issueId, $context->getId());
-                if($issue){
+                
+                $issue = Repo::issue()->get($issueId);
+                if ($issue) {
                     $issueIdentification = htmlspecialchars($issue->getIssueIdentification());
-                } else{
+                } else {
                     $issueIdentification = "";
                 }
-                
+
                 $gridData[] = array(
                     'id' => $submissionId,
                     'title' => htmlspecialchars($title),
@@ -198,6 +202,9 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
         arsort($gridData);
         return $gridData;
     }
+
 }
 
-?>
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\generic\openAIREBrokerService\controllers\grid\OpenAIREBrokerServiceContextGridHandler', '\OpenAIREBrokerServiceContextGridHandler');
+}

@@ -12,8 +12,13 @@
  */
 // $Id$
 
+namespace APP\plugins\generic\openAIREBrokerService;
 
-import('lib.pkp.classes.form.Form');
+use APP\core\Application;
+use APP\journal\JournalDAO;
+use APP\template\TemplateManager;
+use PKP\db\DAORegistry;
+use PKP\form\Form;
 
 class OpenAIREBrokerServiceSettingsForm extends Form {
 
@@ -57,6 +62,8 @@ class OpenAIREBrokerServiceSettingsForm extends Form {
         $this->_context = $context;
 
         parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
+        $this->addCheck(new \PKP\form\validation\FormValidatorPost($this));
+        $this->addCheck(new \PKP\form\validation\FormValidatorCSRF($this));
     }
 
     /**

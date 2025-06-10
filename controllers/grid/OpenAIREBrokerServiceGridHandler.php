@@ -12,9 +12,17 @@
  *
  * @brief Handle OpenAIREBrokerService grid requests.
  */
-import('lib.pkp.classes.controllers.grid.GridHandler');
-import('plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceGridCellProvider');
-import('plugins.generic.openAIREBrokerService.classes.OpenAIREBrokerServiceEnrichments');
+
+namespace APP\plugins\generic\openAIREBrokerService\controllers\grid;
+
+use APP\core\Application;
+use PKP\security\Role;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\GridHandler;
+use PKP\security\authorization\SubmissionAccessPolicy;
+
+use APP\plugins\generic\openAIREBrokerService\controllers\grid\OpenAIREBrokerServiceGridCellProvider;
+use APP\plugins\generic\openAIREBrokerService\classes\OpenAIREBrokerServiceEnrichments;
 
 class OpenAIREBrokerServiceGridHandler extends GridHandler {
 
@@ -28,7 +36,7 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
     function __construct() {
         parent::__construct();
         $this->addRoleAssignment(
-                array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
+                array(Role::ROLE_ID_MANAGER, Role::ROLE_ID_SUB_EDITOR),
                 array('fetchGrid', 'fetchRow')
         );
     }
@@ -50,7 +58,7 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
      * @return Submission
      */
     function getSubmission() {
-        return $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+        return $this->getAuthorizedContextObject(Application::ASSOC_TYPE_SUBMISSION);
     }
 
     /**
@@ -77,7 +85,6 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
      * @copydoc PKPHandler::authorize()
      */
     function authorize($request, &$args, $roleAssignments) {
-        import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');
         $this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
         return parent::authorize($request, $args, $roleAssignments);
     }
@@ -87,7 +94,7 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
      */
     function initialize($request, $args = null) {
         parent::initialize($request, $args);
-
+        
         $submission = $this->getSubmission();
         $submissionId = $submission->getId();
 
@@ -143,4 +150,6 @@ class OpenAIREBrokerServiceGridHandler extends GridHandler {
 
 }
 
-?>
+if (!PKP_STRICT_MODE) {
+    class_alias('\APP\plugins\generic\openAIREBrokerService\controllers\grid\OpenAIREBrokerServiceGridHandler', '\OpenAIREBrokerServiceGridHandler');
+}

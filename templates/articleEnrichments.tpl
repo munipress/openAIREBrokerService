@@ -12,7 +12,7 @@
     <div id="enrichmentsArticleList">
         <p>{translate key="plugins.generic.openAIREBrokerService.article.description"}</p>
 
-        {capture assign=openAIREBrokerServiceGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceGridHandler" op="fetchGrid" submissionId=$submissionId escape=false}{/capture}
+        {capture assign=openAIREBrokerServiceGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.openAIREBrokerService.controllers.grid.OpenAIREBrokerServiceGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}{/capture}
         {load_url_in_div id="openAIREBrokerServiceGridContainer" url=$openAIREBrokerServiceGridUrl}
     </div>
 {/if}

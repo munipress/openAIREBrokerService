@@ -13,7 +13,8 @@
  * @brief Class for a cell provider to display information about funder items
  */
 
-import('lib.pkp.classes.controllers.grid.GridCellProvider');
+namespace APP\plugins\generic\openAIREBrokerService\controllers\grid;
+use PKP\controllers\grid\GridCellProvider;
 
 class OpenAIREBrokerServiceContextGridCellProvider extends GridCellProvider {
 
@@ -37,11 +38,10 @@ class OpenAIREBrokerServiceContextGridCellProvider extends GridCellProvider {
                         case 'issue':
                                 return array('label' => $enrichmentsItem['issue']);
 			case 'enrichmentsTopic':
-				return array('label' => $enrichmentsItem['enrichmentsTopic']);
-			case 'enrichmentsTrust':
-				return array('label' => $enrichmentsItem['enrichmentsTrust']);
+				return array('label' => str_replace('ENRICH/','',$enrichmentsItem['enrichmentsTopic']));
 			case 'enrichmentsMessage':
-				return array('label' => $enrichmentsItem['enrichmentsMessage']);
+                                $message = __("plugins.generic.openAIREBrokerService.trust") . ": " . $enrichmentsItem['enrichmentsTrust']. "<br />".$enrichmentsItem['enrichmentsMessage'];                                    
+				return array('label' => $message);
 		}
 	}        
 }

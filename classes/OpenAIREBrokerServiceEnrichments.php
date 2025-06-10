@@ -12,6 +12,10 @@
  *
  * @brief Supporting class for handling enrichments in two different grids
  */
+namespace APP\plugins\generic\openAIREBrokerService\classes;
+use APP\core\Application;
+
+
 class OpenAIREBrokerServiceEnrichments {
 
     protected $_brokerServiceApi = "http://api.openaire.eu/broker/scroll/notifications/bySubscriptionId/";

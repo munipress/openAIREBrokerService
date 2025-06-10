@@ -13,7 +13,8 @@
  * @brief Class for a cell provider to display information about funder items
  */
 
-import('lib.pkp.classes.controllers.grid.GridCellProvider');
+namespace APP\plugins\generic\openAIREBrokerService\controllers\grid;
+use PKP\controllers\grid\GridCellProvider;
 
 class OpenAIREBrokerServiceGridCellProvider extends GridCellProvider {
 

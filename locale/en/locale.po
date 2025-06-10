@@ -1,6 +1,6 @@
 #
 msgid ""
-msgstr "Language: en_US\n"
+msgstr "Language: en\n"
 
 msgid "plugins.generic.openAIREBrokerService"
 msgstr "OpenAIRE Enrichments"
