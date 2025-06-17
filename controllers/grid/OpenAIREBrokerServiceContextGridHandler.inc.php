@@ -195,7 +195,6 @@ class OpenAIREBrokerServiceContextGridHandler extends GridHandler {
                 );
             }
         }  
-        arsort($gridData);
         return $gridData;
     }
 
