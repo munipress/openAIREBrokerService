@@ -199,7 +199,6 @@ class OpenAIREBrokerServiceContextGridHandler extends \PKP\controllers\grid\Grid
                 );
             }
         }
-        arsort($gridData);
         return $gridData;
     }
 

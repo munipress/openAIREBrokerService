@@ -12,9 +12,10 @@
  *
  * @brief Supporting class for handling enrichments in two different grids
  */
-namespace APP\plugins\generic\openAIREBrokerService\classes;
-use APP\core\Application;
 
+namespace APP\plugins\generic\openAIREBrokerService\classes;
+
+use APP\core\Application;
 
 class OpenAIREBrokerServiceEnrichments {
 
@@ -61,6 +62,7 @@ class OpenAIREBrokerServiceEnrichments {
         foreach ($subscriptions as $topicKey => $subscription) {
             $contextEnrichments = $this->arrayMergeByKey($contextEnrichments, $this->getArticleMessages($subscription, null, $topicKey));
         }
+        arsort($contextEnrichments);
         return $contextEnrichments;
     }
 
@@ -129,6 +131,12 @@ class OpenAIREBrokerServiceEnrichments {
                     continue;
                 }
 
+                //Topic is not the same as subscrition
+                if ($item['topic'] != $topic) {
+                    continue;
+                }
+
+
                 $pos = strrpos($item['originalId'], '/');
                 if (!$pos) {
                     continue;
@@ -137,7 +145,7 @@ class OpenAIREBrokerServiceEnrichments {
                 $idToCompare = $pos !== false ? $jsonSubmissionId : $item['originalId'];
 
                 if ($submissionId) {
-                    if ($idToCompare == $submissionId && $item['topic'] == $topic) {
+                    if ($idToCompare == $submissionId) {
                         $results[$submissionId][] = $item;
                     }
                 } else {
