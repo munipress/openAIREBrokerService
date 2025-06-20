@@ -131,11 +131,23 @@ class OpenAIREBrokerServiceEnrichments {
                     continue;
                 }
                 
+                $oaiTest = strrpos($item['originalId'], 'oai');
+                
+                if ($oaiTest === false) {
+                    continue;
+                }
+                
                 $pos = strrpos($item['originalId'], '/');
+                
                 if (!$pos) {
                     continue;
                 }
+                
                 $jsonSubmissionId = substr($item['originalId'], $pos + 1);
+                
+                if(!preg_match('/^-?\d+$/', $jsonSubmissionId)){
+                    continue;
+                }
                 $idToCompare = $pos !== false ? $jsonSubmissionId : $item['originalId'];
 
                 if ($submissionId) {
